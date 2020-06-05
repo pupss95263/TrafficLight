@@ -2,12 +2,15 @@ package tw.edu.pu.s10703272.trafficlight;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity {
     GameSurfaceView GameSV;
@@ -29,9 +32,15 @@ public class GameActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         setContentView(R.layout.activity_game);
+        Intent it = getIntent();
+        int Greensec = it.getIntExtra("綠燈",0);
+        int YellowSec = it.getIntExtra("黃燈",0);
+        int RedSec = it.getIntExtra("紅燈",0);
+
         GameSV = (GameSurfaceView) findViewById(R.id.GameSV);
         //設定初始測試之燈號秒數
-        GameSV.SetLightSec(6,2,3);
+        GameSV.SetLightSec(Greensec,YellowSec,RedSec);
+
 
         handler= new Handler();
 
